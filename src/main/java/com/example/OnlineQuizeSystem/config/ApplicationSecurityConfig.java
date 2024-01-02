@@ -10,20 +10,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
-
 @Configuration
-public class SecurityConfig {
+public class ApplicationSecurityConfig {
     @Bean
     SecurityFilterChain defualtSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests((request) -> request
-                        .requestMatchers("/signup").authenticated()
-                        .requestMatchers("/contact", "/notice").permitAll())
+        httpSecurity.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests((request) -> request
+                        .requestMatchers("/signin").authenticated()
+                        .requestMatchers("/signup", "/contact", "/notice").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
