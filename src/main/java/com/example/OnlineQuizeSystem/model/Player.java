@@ -5,17 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class User {
+public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", parameters = {})
     private int id;
-    @Column(unique = true)
     private String email;
     private String password;
+    private String role;
 }
