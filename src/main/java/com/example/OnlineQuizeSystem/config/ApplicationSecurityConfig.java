@@ -16,7 +16,7 @@ public class ApplicationSecurityConfig {
     SecurityFilterChain defualtSecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/signin").authenticated()
+                        .requestMatchers("/xyz").authenticated()
                         .requestMatchers("/signup", "/contact", "/notice").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
