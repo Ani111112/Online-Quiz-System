@@ -22,4 +22,10 @@ public class PlayerController {
         }else response = new ResponseEntity<>("Registration not successful", HttpStatus.BAD_REQUEST);
         return response;
     }
+
+//    @PostMapping("/xyz")
+    @RequestMapping(value = "/xyz", method = RequestMethod.GET)
+    public String login() {
+        return "xyz";
+    }
 }
