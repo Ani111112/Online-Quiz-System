@@ -17,7 +17,7 @@ public class ApplicationSecurityConfig {
         httpSecurity.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/xyz").authenticated()
-                        .requestMatchers("/signup", "/contact", "/notice").permitAll())
+                        .requestMatchers("/signup", "/contact", "/notice", "/verify").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();

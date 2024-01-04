@@ -22,10 +22,17 @@ public class PlayerController {
         }else response = new ResponseEntity<>("Registration not successful", HttpStatus.BAD_REQUEST);
         return response;
     }
-
-//    @PostMapping("/xyz")
     @RequestMapping(value = "/xyz", method = RequestMethod.GET)
     public String login() {
         return "xyz";
+    }
+
+    @GetMapping("/verify")
+    public ResponseEntity verifyEmail(@RequestParam String email, @RequestParam String enteredOtp) {
+        try {
+            return new ResponseEntity<>(playerService.verifyEmail(email, enteredOtp), HttpStatus.ACCEPTED);
+        }catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
